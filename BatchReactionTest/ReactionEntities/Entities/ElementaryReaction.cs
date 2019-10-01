@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReactionEntities.Entities
 {
@@ -10,8 +7,10 @@ namespace ReactionEntities.Entities
     {
         private Component[] _leftHandSide;
         private Component[] _rightHandSide;
-        private double _preExponentialFactor;
-        private double _activationEnergy;
+        private double _preExponentialFactorForward;
+        private double _activationEnergyForward;
+        private double _preExponentialFactorBackward;
+        private double _activationEnergyBackward;
 
         public Component[] LeftHandSide
         {
@@ -25,19 +24,32 @@ namespace ReactionEntities.Entities
             set { _rightHandSide = value; }
         }        
 
-        public double PreExponentialFactor
+        public double PreExponentialFactorForward
         {
-            get { return _preExponentialFactor; }
-            set { _preExponentialFactor = value; }
+            get { return _preExponentialFactorForward; }
+            set { _preExponentialFactorForward = value; }
         }
 
-        public double ActivationEnergy
+        public double ActivationEnergyForward
         {
-            get { return _activationEnergy; }
-            set { _activationEnergy = value; }
+            get { return _activationEnergyForward; }
+            set { _activationEnergyForward = value; }
         }
 
-        public ElementaryReaction(List<Component> leftHandSide, List<Component> rightHandSide, double preExponentialFactor, double activationEnergy)
+        public double PreExponentialFactorBackward
+        {
+            get { return _preExponentialFactorBackward; }
+            set { _preExponentialFactorBackward = value; }
+        }
+
+        public double ActivationEnergyBackward
+        {
+            get { return _activationEnergyBackward; }
+            set { _activationEnergyBackward = value; }
+        }
+
+        public ElementaryReaction(List<Component> leftHandSide, List<Component> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
+            double preExponentialFactorBackward, double activationEnergyBackward)
         {
             LeftHandSide = new Component[leftHandSide.Count];
             RightHandSide = new Component[rightHandSide.Count];
@@ -45,14 +57,22 @@ namespace ReactionEntities.Entities
             LeftHandSide = leftHandSide.ToArray();
             RightHandSide = rightHandSide.ToArray();
 
-            PreExponentialFactor = preExponentialFactor;
-            ActivationEnergy = activationEnergy;
+            PreExponentialFactorForward = preExponentialFactorForward;
+            ActivationEnergyForward = activationEnergyForward;
+            PreExponentialFactorBackward = preExponentialFactorBackward;
+            ActivationEnergyBackward = activationEnergyBackward;
         }
 
-        public double RateCoefficient(double temperature)
+        public double ForwardRateCoefficient(double temperature)
         {
-            return PreExponentialFactor * Math.Exp(-ActivationEnergy / (PhysicalConstants.GASCONSTANT * temperature));
+            return PreExponentialFactorForward * Math.Exp(-ActivationEnergyForward / (PhysicalConstants.GASCONSTANT * temperature));
         }
+
+        public double BackwardRateCoefficient(double temperature)
+        {
+            return PreExponentialFactorBackward * Math.Exp(-ActivationEnergyBackward / (PhysicalConstants.GASCONSTANT * temperature));
+        }
+
 
     }
 }
