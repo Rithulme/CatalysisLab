@@ -74,5 +74,20 @@ namespace ReactionEntities.Entities
         }
 
 
+        public List<Component> ListComponents()
+        {
+            List<Component> returnList = new List<Component>();
+            foreach (var component in LeftHandSide)
+            {
+                if (!returnList.Contains(component))
+                {
+                    returnList.Add(component);
+                }
+            }
+
+            return returnList;
+        }
+
+
     }
 }
