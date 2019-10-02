@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ReactionEntities.Entities
 {
-    class ElementaryReaction
+    public class ElementaryReaction
     {
         private Component[] _leftHandSide;
         private Component[] _rightHandSide;

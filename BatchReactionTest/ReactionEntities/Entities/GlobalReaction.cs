@@ -2,7 +2,7 @@
 
 namespace ReactionEntities.Entities
 {
-    class GlobalReaction
+    public class GlobalReaction
     {
         private ElementaryReaction[] _partialReactions;
         private Component[] _globalComponentList;

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchReactionTest", "BatchR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionEntities", "ReactionEntities\ReactionEntities.csproj", "{538348C2-2C1F-41CE-907B-3B2740F25BA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactorSolvers", "ReactorSolvers\ReactorSolvers.csproj", "{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{538348C2-2C1F-41CE-907B-3B2740F25BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{538348C2-2C1F-41CE-907B-3B2740F25BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{538348C2-2C1F-41CE-907B-3B2740F25BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
