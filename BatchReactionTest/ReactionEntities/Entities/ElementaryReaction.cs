@@ -108,6 +108,7 @@ namespace ReactionEntities.Entities
                 }
                 double concentrationChange = -ForwardRateCoefficient(currentTemperature) * prodConcentration;
 
+                prodConcentration = 1.0;
                 foreach (var componentBis in RightHandSide)
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
@@ -135,6 +136,7 @@ namespace ReactionEntities.Entities
                 }
                 double concentrationChange = ForwardRateCoefficient(currentTemperature) * prodConcentration;
 
+                prodConcentration = 1.0;
                 foreach (var componentBis in RightHandSide)
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
