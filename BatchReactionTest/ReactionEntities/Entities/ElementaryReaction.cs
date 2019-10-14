@@ -85,7 +85,75 @@ namespace ReactionEntities.Entities
                 }
             }
 
+            foreach (var component in RightHandSide)
+            {
+                if (!returnList.Contains(component))
+                {
+                    returnList.Add(component);
+                }
+            }
+
             return returnList;
+        }
+
+        public Dictionary<Component, double> UpdateConcentration(Dictionary<Component, double> currentConcentration, double currentTemperature)
+        {
+            var returnDictionary = new Dictionary<Component, double>;
+            foreach (var component in LeftHandSide)
+            {
+                double prodConcentration = 1.0;
+                foreach (var componentBis in LeftHandSide)
+                {
+                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                }
+                double concentrationChange = -ForwardRateCoefficient(currentTemperature) * prodConcentration;
+
+                foreach (var componentBis in RightHandSide)
+                {
+                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                }
+                concentrationChange = concentrationChange + BackwardRateCoefficient(currentTemperature) * prodConcentration;
+
+                if (!returnDictionary.ContainsKey(component))
+                {
+                    returnDictionary.Add(component, currentConcentration[component] + concentrationChange);
+                }
+                else
+                {
+                    var tempconc = returnDictionary[component];
+                    returnDictionary.Remove(component);
+                    returnDictionary.Add(component, tempconc + concentrationChange);
+                }
+            }
+
+            foreach (var component in RightHandSide)
+            {
+                double prodConcentration = 1.0;
+                foreach (var componentBis in LeftHandSide)
+                {
+                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                }
+                double concentrationChange = ForwardRateCoefficient(currentTemperature) * prodConcentration;
+
+                foreach (var componentBis in RightHandSide)
+                {
+                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                }
+                concentrationChange = concentrationChange - BackwardRateCoefficient(currentTemperature) * prodConcentration;
+
+                if (!returnDictionary.ContainsKey(component))
+                {
+                    returnDictionary.Add(component, currentConcentration[component] + concentrationChange);
+                }
+                else
+                {
+                    var tempconc = returnDictionary[component];
+                    returnDictionary.Remove(component);
+                    returnDictionary.Add(component, tempconc + concentrationChange);
+                }
+            }
+
+            return returnDictionary;
         }
 
 
