@@ -2,7 +2,7 @@
 
 namespace ReactorSolvers
 {
-    public class BatchSolver
+    public class BatchSolver : ISolver
     {
         public void Solve(GlobalReaction reaction)
         {

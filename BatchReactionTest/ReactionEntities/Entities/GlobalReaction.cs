@@ -6,6 +6,9 @@ namespace ReactionEntities.Entities
     {
         private ElementaryReaction[] _partialReactions;
         private Component[] _globalComponentList;
+        private Dictionary<Component, double> _initialConcentration;
+        private Dictionary<Component, List<double>> _concentrationEvolution;
+        private List<double> _sampleTimes;
 
         public ElementaryReaction[] PartialReactions
         {
@@ -17,12 +20,30 @@ namespace ReactionEntities.Entities
         {
             get { return _globalComponentList; }
             set { _globalComponentList = value; }
+        }        
+
+        public Dictionary<Component, double> InitialConcentration
+        {
+            get { return _initialConcentration; }
+            set { _initialConcentration = value; }
+        }
+
+        public Dictionary<Component, List<double>> ConcentrationEvolution
+        {
+            get { return _concentrationEvolution; }
+            set { _concentrationEvolution = value; }
+        }
+
+        public List<double> SampleTimes
+        {
+            get { return _sampleTimes; }
+            set { _sampleTimes = value; }
         }
 
         public GlobalReaction(List<ElementaryReaction> partialReactions)
         {
             PartialReactions = partialReactions.ToArray();
-            GlobalComponentList = ListComponents();
+            GlobalComponentList = ListComponents();           
         }
 
         private Component[] ListComponents()
