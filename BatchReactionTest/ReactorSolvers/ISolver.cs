@@ -1,4 +1,4 @@
-﻿using ReactionEntities.Entities;
+﻿using Reaction.Entities;
 
 namespace ReactorSolvers
 {

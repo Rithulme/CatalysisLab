@@ -1,5 +1,5 @@
 ﻿
-namespace ReactionEntities
+namespace Reaction
 {
     public class Component
     {

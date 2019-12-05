@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ReactionEntities.Entities
+namespace Reaction.Entities
 {
     public class ElementaryReaction
     {
@@ -96,7 +96,7 @@ namespace ReactionEntities.Entities
             return returnList;
         }
 
-        public Dictionary<Component, double> UpdateConcentration(Dictionary<Component, double> currentConcentration, double currentTemperature)
+        public Dictionary<Component, double> UpdateConcentration(Dictionary<Component, double> currentConcentration, double currentTemperature, double timestep)
         {
             var returnDictionary = new Dictionary<Component, double>;
             foreach (var component in LeftHandSide)
@@ -106,14 +106,14 @@ namespace ReactionEntities.Entities
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
                 }
-                double concentrationChange = -ForwardRateCoefficient(currentTemperature) * prodConcentration;
+                double concentrationChange = -ForwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 prodConcentration = 1.0;
                 foreach (var componentBis in RightHandSide)
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
                 }
-                concentrationChange = concentrationChange + BackwardRateCoefficient(currentTemperature) * prodConcentration;
+                concentrationChange = concentrationChange + BackwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 if (!returnDictionary.ContainsKey(component))
                 {
@@ -134,14 +134,14 @@ namespace ReactionEntities.Entities
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
                 }
-                double concentrationChange = ForwardRateCoefficient(currentTemperature) * prodConcentration;
+                double concentrationChange = ForwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 prodConcentration = 1.0;
                 foreach (var componentBis in RightHandSide)
                 {
                     prodConcentration = prodConcentration * currentConcentration[componentBis];
                 }
-                concentrationChange = concentrationChange - BackwardRateCoefficient(currentTemperature) * prodConcentration;
+                concentrationChange = concentrationChange - BackwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 if (!returnDictionary.ContainsKey(component))
                 {

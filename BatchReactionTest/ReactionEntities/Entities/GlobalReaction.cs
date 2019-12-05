@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace ReactionEntities.Entities
+namespace Reaction.Entities
 {
     public class GlobalReaction
     {
@@ -56,6 +57,23 @@ namespace ReactionEntities.Entities
             }
 
             return componentList.ToArray();
+        }
+
+        public void updateConcentrations(double timestep)
+        {
+            //todo
+        }
+
+        private Dictionary<Component, double> getCurrentConcentration()
+        {
+            var returnDictionary = new Dictionary<Component, double>;
+
+            foreach (var component in ConcentrationEvolution.Keys)
+            {
+                returnDictionary.Add(component, ConcentrationEvolution[component].Last());
+            }
+
+            return returnDictionary;
         }
 
 

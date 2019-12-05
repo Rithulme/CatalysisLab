@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchReactionTest", "BatchReactionTest\BatchReactionTest.csproj", "{1D4A60B5-7BC8-4436-86C9-3BBB2314CEAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactionEntities", "ReactionEntities\ReactionEntities.csproj", "{538348C2-2C1F-41CE-907B-3B2740F25BA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaction", "ReactionEntities\Reaction.csproj", "{538348C2-2C1F-41CE-907B-3B2740F25BA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactorSolvers", "ReactorSolvers\ReactorSolvers.csproj", "{C7FC5DB0-2E21-4A34-BD76-E834ECC71CC8}"
 EndProject

@@ -1,4 +1,4 @@
-﻿using ReactionEntities.Entities;
+﻿using Reaction.Entities;
 using ReactorSolvers;
 using System.Collections.Generic;
 

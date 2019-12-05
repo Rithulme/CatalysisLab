@@ -46,9 +46,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReactionEntities\ReactionEntities.csproj">
+    <ProjectReference Include="..\ReactionEntities\Reaction.csproj">
       <Project>{538348c2-2c1f-41ce-907b-3b2740f25ba8}</Project>
-      <Name>ReactionEntities</Name>
+      <Name>Reaction</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

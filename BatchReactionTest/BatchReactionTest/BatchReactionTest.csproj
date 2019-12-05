@@ -51,9 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReactionEntities\ReactionEntities.csproj">
+    <ProjectReference Include="..\ReactionEntities\Reaction.csproj">
       <Project>{538348c2-2c1f-41ce-907b-3b2740f25ba8}</Project>
-      <Name>ReactionEntities</Name>
+      <Name>Reaction</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReactorSolvers\ReactorSolvers.csproj">
       <Project>{c7fc5db0-2e21-4a34-bd76-e834ecc71cc8}</Project>
