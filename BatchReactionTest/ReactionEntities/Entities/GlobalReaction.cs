@@ -59,24 +59,26 @@ namespace Reaction.Entities
             return componentList.ToArray();
         }
 
-        public void updateConcentrations(double timestep)
+        public Dictionary<Component, double> updateConcentrations(double timestep, double temperature, Dictionary<Component, double> currentConcentration)
         {
-            //todo
-        }
+            var returnConcentrationChange = new Dictionary<Component, double>;
 
-        private Dictionary<Component, double> getCurrentConcentration()
-        {
-            var returnDictionary = new Dictionary<Component, double>;
-
-            foreach (var component in ConcentrationEvolution.Keys)
+            foreach (var component in currentConcentration.Keys)
             {
-                returnDictionary.Add(component, ConcentrationEvolution[component].Last());
+                returnConcentrationChange.Add(component, 0.0);
             }
 
-            return returnDictionary;
+            foreach (var partialReaction in PartialReactions)
+            {
+                var concentrationChange = partialReaction.UpdateConcentration(currentConcentration, temperature, timestep);
+                foreach (var component in concentrationChange.Keys)
+                {
+                    returnConcentrationChange[component] = returnConcentrationChange[component] + concentrationChange[component];
+                }                
+            }
+
+            return returnConcentrationChange;
         }
-
-
 
     }
 }

@@ -117,7 +117,7 @@ namespace Reaction.Entities
 
                 if (!returnDictionary.ContainsKey(component))
                 {
-                    returnDictionary.Add(component, currentConcentration[component] + concentrationChange);
+                    returnDictionary.Add(component, concentrationChange);
                 }
                 else
                 {
@@ -145,7 +145,7 @@ namespace Reaction.Entities
 
                 if (!returnDictionary.ContainsKey(component))
                 {
-                    returnDictionary.Add(component, currentConcentration[component] + concentrationChange);
+                    returnDictionary.Add(component, concentrationChange);
                 }
                 else
                 {
