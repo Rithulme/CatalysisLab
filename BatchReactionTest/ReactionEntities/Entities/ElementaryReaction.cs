@@ -5,20 +5,20 @@ namespace Reaction.Entities
 {
     public class ElementaryReaction
     {
-        private Component[] _leftHandSide;
-        private Component[] _rightHandSide;
+        private Tuple<Component, int>[] _leftHandSide;
+        private Tuple<Component, int>[] _rightHandSide;
         private double _preExponentialFactorForward;
         private double _activationEnergyForward;
         private double _preExponentialFactorBackward;
         private double _activationEnergyBackward;
 
-        public Component[] LeftHandSide
+        public Tuple<Component, int>[] LeftHandSide
         {
             get { return _leftHandSide; }
             set { _leftHandSide = value; }
         }
 
-        public Component[] RightHandSide
+        public Tuple<Component, int>[] RightHandSide
         {
             get { return _rightHandSide; }
             set { _rightHandSide = value; }
@@ -48,11 +48,11 @@ namespace Reaction.Entities
             set { _activationEnergyBackward = value; }
         }
 
-        public ElementaryReaction(List<Component> leftHandSide, List<Component> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
+        public ElementaryReaction(List<Tuple<Component, int>> leftHandSide, List<Tuple<Component, int>> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
             double preExponentialFactorBackward, double activationEnergyBackward)
         {
-            LeftHandSide = new Component[leftHandSide.Count];
-            RightHandSide = new Component[rightHandSide.Count];
+            LeftHandSide = new Tuple<Component, int>[leftHandSide.Count];
+            RightHandSide = new Tuple<Component, int>[rightHandSide.Count];
 
             LeftHandSide = leftHandSide.ToArray();
             RightHandSide = rightHandSide.ToArray();
@@ -77,19 +77,19 @@ namespace Reaction.Entities
         public List<Component> ListComponents()
         {
             List<Component> returnList = new List<Component>();
-            foreach (var component in LeftHandSide)
+            foreach (var componentTuple in LeftHandSide)
             {
-                if (!returnList.Contains(component))
+                if (!returnList.Contains(componentTuple.Item1))
                 {
-                    returnList.Add(component);
+                    returnList.Add(componentTuple.Item1);
                 }
             }
 
-            foreach (var component in RightHandSide)
+            foreach (var componentTuple in RightHandSide)
             {
-                if (!returnList.Contains(component))
+                if (!returnList.Contains(componentTuple.Item1))
                 {
-                    returnList.Add(component);
+                    returnList.Add(componentTuple.Item1);
                 }
             }
 
@@ -99,59 +99,59 @@ namespace Reaction.Entities
         public Dictionary<Component, double> UpdateConcentration(Dictionary<Component, double> currentConcentration, double currentTemperature, double timestep)
         {
             var returnDictionary = new Dictionary<Component, double>;
-            foreach (var component in LeftHandSide)
+            foreach (var componentTuple in LeftHandSide)
             {
                 double prodConcentration = 1.0;
-                foreach (var componentBis in LeftHandSide)
+                foreach (var componentTupleBis in LeftHandSide)
                 {
-                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                    prodConcentration = prodConcentration * Math.Pow(currentConcentration[componentTupleBis.Item1],componentTupleBis.Item2);
                 }
                 double concentrationChange = -ForwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 prodConcentration = 1.0;
-                foreach (var componentBis in RightHandSide)
+                foreach (var componentTupleBis in RightHandSide)
                 {
-                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                    prodConcentration = prodConcentration * Math.Pow(currentConcentration[componentTupleBis.Item1], componentTupleBis.Item2);
                 }
                 concentrationChange = concentrationChange + BackwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
-                if (!returnDictionary.ContainsKey(component))
+                if (!returnDictionary.ContainsKey(componentTuple.Item1))
                 {
-                    returnDictionary.Add(component, concentrationChange);
+                    returnDictionary.Add(componentTuple.Item1, concentrationChange);
                 }
                 else
                 {
-                    var tempconc = returnDictionary[component];
-                    returnDictionary.Remove(component);
-                    returnDictionary.Add(component, tempconc + concentrationChange);
+                    var tempconc = returnDictionary[componentTuple.Item1];
+                    returnDictionary.Remove(componentTuple.Item1);
+                    returnDictionary.Add(componentTuple.Item1, tempconc + concentrationChange);
                 }
             }
 
-            foreach (var component in RightHandSide)
+            foreach (var componentTuple in RightHandSide)
             {
                 double prodConcentration = 1.0;
-                foreach (var componentBis in LeftHandSide)
+                foreach (var componentTupleBis in LeftHandSide)
                 {
-                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                    prodConcentration = prodConcentration * Math.Pow(currentConcentration[componentTupleBis.Item1], componentTupleBis.Item2);
                 }
                 double concentrationChange = ForwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
                 prodConcentration = 1.0;
-                foreach (var componentBis in RightHandSide)
+                foreach (var componentTupleBis in RightHandSide)
                 {
-                    prodConcentration = prodConcentration * currentConcentration[componentBis];
+                    prodConcentration = prodConcentration * Math.Pow(currentConcentration[componentTupleBis.Item1], componentTupleBis.Item2);
                 }
                 concentrationChange = concentrationChange - BackwardRateCoefficient(currentTemperature) * prodConcentration * timestep;
 
-                if (!returnDictionary.ContainsKey(component))
+                if (!returnDictionary.ContainsKey(componentTuple.Item1))
                 {
-                    returnDictionary.Add(component, concentrationChange);
+                    returnDictionary.Add(componentTuple.Item1, concentrationChange);
                 }
                 else
                 {
-                    var tempconc = returnDictionary[component];
-                    returnDictionary.Remove(component);
-                    returnDictionary.Add(component, tempconc + concentrationChange);
+                    var tempconc = returnDictionary[componentTuple.Item1];
+                    returnDictionary.Remove(componentTuple.Item1);
+                    returnDictionary.Add(componentTuple.Item1, tempconc + concentrationChange);
                 }
             }
 
