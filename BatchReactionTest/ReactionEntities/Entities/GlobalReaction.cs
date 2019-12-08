@@ -43,7 +43,17 @@ namespace Reaction.Entities
 
         public GlobalReaction(List<ElementaryReaction> partialReactions)
         {
-            PartialReactions = partialReactions.ToArray();
+            //Make a deep copy of the partial reactions
+            PartialReactions = new ElementaryReaction[partialReactions.Count];
+            int counter = 0;
+
+            foreach (var partialReaction in partialReactions)
+            {
+                PartialReactions[counter] = new ElementaryReaction(partialReaction.LeftHandSide.ToList(), partialReaction.RightHandSide.ToList(), partialReaction.PreExponentialFactorForward,
+                    partialReaction.ActivationEnergyForward, partialReaction.PreExponentialFactorBackward, partialReaction.ActivationEnergyBackward);
+                counter++;
+            }
+
             GlobalComponentList = ListComponents();           
         }
 

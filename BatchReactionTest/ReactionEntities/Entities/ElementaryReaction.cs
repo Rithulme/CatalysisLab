@@ -53,9 +53,21 @@ namespace Reaction.Entities
         {
             LeftHandSide = new Tuple<Component, int>[leftHandSide.Count];
             RightHandSide = new Tuple<Component, int>[rightHandSide.Count];
+            int counter = 0;
 
-            LeftHandSide = leftHandSide.ToArray();
-            RightHandSide = rightHandSide.ToArray();
+            foreach (var componentTuple in leftHandSide)
+            {
+                LeftHandSide[counter] = new Tuple<Component, int>(new Component(componentTuple.Item1.Name, componentTuple.Item1.ChemicalComposition), componentTuple.Item2);
+                counter++;
+            }
+
+            counter = 0;
+
+            foreach (var componentTuple in rightHandSide)
+            {
+                RightHandSide[counter] = new Tuple<Component, int>(new Component(componentTuple.Item1.Name, componentTuple.Item1.ChemicalComposition), componentTuple.Item2);
+                counter++;
+            }
 
             PreExponentialFactorForward = preExponentialFactorForward;
             ActivationEnergyForward = activationEnergyForward;
