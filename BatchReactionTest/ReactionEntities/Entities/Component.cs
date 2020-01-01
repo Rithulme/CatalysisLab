@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Reaction.Entities
 {
     public class Component
@@ -29,6 +31,9 @@ namespace Reaction.Entities
             return string.Equals(Name, comparedComponent.Name);
         }
 
-
+        public Component Copy()
+        {
+            return new Component(this.Name,this.ChemicalComposition);
+        }
     }
 }

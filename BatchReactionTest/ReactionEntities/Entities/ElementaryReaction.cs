@@ -48,6 +48,30 @@ namespace Reaction.Entities
             set { _activationEnergyBackward = value; }
         }
 
+        public ElementaryReaction Copy()
+        {
+            var leftHandSide = new Tuple<Component,int>[LeftHandSide.Length];
+            var rightHandSide = new Tuple<Component, int>[RightHandSide.Length];
+            int counter = 0;
+
+            foreach (var componentTuple in LeftHandSide)
+            {
+                leftHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                counter++;
+            }
+
+            counter = 0;
+
+            foreach (var componentTuple in RightHandSide)
+            {
+                rightHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                counter++;
+            }
+
+            return new ElementaryReaction(new List<Tuple<Component, int>>(leftHandSide), new List<Tuple<Component, int>>(rightHandSide),
+                PreExponentialFactorForward, ActivationEnergyForward, PreExponentialFactorBackward, ActivationEnergyBackward);
+        }
+
         public ElementaryReaction(List<Tuple<Component, int>> leftHandSide, List<Tuple<Component, int>> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
             double preExponentialFactorBackward, double activationEnergyBackward)
         {
@@ -57,7 +81,7 @@ namespace Reaction.Entities
 
             foreach (var componentTuple in leftHandSide)
             {
-                LeftHandSide[counter] = new Tuple<Component, int>(new Component(componentTuple.Item1.Name, componentTuple.Item1.ChemicalComposition), componentTuple.Item2);
+                LeftHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
                 counter++;
             }
 
@@ -65,7 +89,7 @@ namespace Reaction.Entities
 
             foreach (var componentTuple in rightHandSide)
             {
-                RightHandSide[counter] = new Tuple<Component, int>(new Component(componentTuple.Item1.Name, componentTuple.Item1.ChemicalComposition), componentTuple.Item2);
+                RightHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
                 counter++;
             }
 
