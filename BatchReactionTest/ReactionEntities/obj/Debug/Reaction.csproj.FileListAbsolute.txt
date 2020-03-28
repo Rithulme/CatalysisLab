@@ -1,0 +1,6 @@
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.csprojAssemblyReference.cache
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.csproj.CoreCompileInputs.cache
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\bin\Debug\Reaction.dll
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\bin\Debug\Reaction.pdb
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.dll
+D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.pdb

@@ -1,0 +1,2 @@
+D:\Source\CatalysisLab\BatchReactionTest\BatchReactionTest\obj\Debug\BatchReactionTest.csprojAssemblyReference.cache
+D:\Source\CatalysisLab\BatchReactionTest\BatchReactionTest\obj\Debug\BatchReactionTest.csproj.CoreCompileInputs.cache

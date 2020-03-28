@@ -38,7 +38,7 @@ namespace Reaction.Entities
 
         public GlobalReaction Copy()
         {
-            var partialReactions = new List<ElementaryReaction>;
+            var partialReactions = new List<ElementaryReaction>();
 
             foreach (var partialReaction in PartialReactions)
             {
@@ -59,27 +59,5 @@ namespace Reaction.Entities
 
             return componentList.ToArray();
         }
-
-        public Dictionary<Component, double> updateConcentrations(double timestep, double temperature, Dictionary<Component, double> currentConcentration)
-        {
-            var returnConcentrationChange = new Dictionary<Component, double>;
-
-            foreach (var component in currentConcentration.Keys)
-            {
-                returnConcentrationChange.Add(component, 0.0);
-            }
-
-            foreach (var partialReaction in PartialReactions)
-            {
-                var concentrationChange = partialReaction.UpdateConcentration(currentConcentration, temperature, timestep);
-                foreach (var component in concentrationChange.Keys)
-                {
-                    returnConcentrationChange[component] = returnConcentrationChange[component] + concentrationChange[component];
-                }                
-            }
-
-            return returnConcentrationChange;
-        }
-
     }
 }

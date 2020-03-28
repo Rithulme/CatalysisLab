@@ -1,4 +1,5 @@
-﻿using Reaction.Entities;
+﻿using Reaction.Calculators;
+using Reaction.Entities;
 using System;
 using System.Collections.Generic;
 
@@ -14,6 +15,7 @@ namespace ProblemTypes
         private Dictionary<Component, List<double>> _resultConcentration;
         private Dictionary<Component, double> _currentConcentration;
         private double _totalTime;
+        private readonly GlobalReactionCalculator _globalReactionCalculator;
 
         public GlobalReaction GlobalReaction
         {
@@ -55,7 +57,7 @@ namespace ProblemTypes
         {
             TotalTime = totalTime;
             GlobalReaction = globalReaction.Copy();
-            
+            _globalReactionCalculator = new GlobalReactionCalculator();
         }
 
         public Dictionary<Component, List<double>> ResultConcentration
@@ -79,7 +81,7 @@ namespace ProblemTypes
 
             for (int i = 0; i < numberOfIterations; i++)
             {
-                CurrentConcentration = GlobalReaction.updateConcentrations(Timestep, ReactionTemperature, CurrentConcentration);
+                CurrentConcentration = _globalReactionCalculator.updateConcentrations(GlobalReaction ,Timestep, ReactionTemperature, CurrentConcentration);
                 runningTimeCounter = runningTimeCounter + Timestep;
 
                 if (runningTimeCounter >= ResultTimestep)
@@ -87,8 +89,6 @@ namespace ProblemTypes
 
                 }
             }
-
-
         }
 
         private int DetermineNumberOfIterations()
@@ -98,7 +98,23 @@ namespace ProblemTypes
 
         private void DetermineTimesteps()
         {
-            throw new NotImplementedException();
+            var estimatedChange = 1.0;
+            var estimatedSpeed = 0.0;
+            foreach (var elementaryReaction in GlobalReaction.PartialReactions)
+            {
+                foreach (var component in elementaryReaction.LeftHandSide)
+                {
+                    estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
+                        * Math.Pow(InitialConcentration[component.Item1], component.Item2));
+                }
+                foreach (var component in elementaryReaction.RightHandSide)
+                {
+                    estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
+                        * Math.Pow(InitialConcentration[component.Item1], component.Item2));
+                }
+                estimatedSpeed = Math.Min(Math.Min(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
+            }
+            
         }
 
         private void Initialize()
