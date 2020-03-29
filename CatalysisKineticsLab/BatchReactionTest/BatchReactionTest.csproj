@@ -46,6 +46,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ProblemTypes\ProblemTypes.csproj">
+      <Project>{F2521A02-5CC5-4669-914F-9486FFE02ADE}</Project>
+      <Name>ProblemTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReactionEntities\Reaction.csproj">
       <Project>{538348c2-2c1f-41ce-907b-3b2740f25ba8}</Project>
       <Name>Reaction</Name>
