@@ -114,6 +114,8 @@ namespace ProblemTypes
                 }
                 estimatedSpeed = Math.Min(Math.Min(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
             }
+
+            Timestep = estimatedChange / (estimatedSpeed * 1000.0);
             
         }
 

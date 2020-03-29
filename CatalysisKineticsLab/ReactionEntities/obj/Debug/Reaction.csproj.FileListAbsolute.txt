@@ -4,3 +4,8 @@ D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\bin\Debug\Reaction.dll
 D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\bin\Debug\Reaction.pdb
 D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.dll
 D:\Source\CatalysisLab\BatchReactionTest\ReactionEntities\obj\Debug\Reaction.pdb
+D:\Source\CatalysisLab\CatalysisKineticsLab\ReactionEntities\bin\Debug\Reaction.dll
+D:\Source\CatalysisLab\CatalysisKineticsLab\ReactionEntities\bin\Debug\Reaction.pdb
+D:\Source\CatalysisLab\CatalysisKineticsLab\ReactionEntities\obj\Debug\Reaction.csproj.CoreCompileInputs.cache
+D:\Source\CatalysisLab\CatalysisKineticsLab\ReactionEntities\obj\Debug\Reaction.dll
+D:\Source\CatalysisLab\CatalysisKineticsLab\ReactionEntities\obj\Debug\Reaction.pdb

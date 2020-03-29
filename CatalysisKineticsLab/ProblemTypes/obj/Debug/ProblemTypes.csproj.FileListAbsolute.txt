@@ -1,2 +1,11 @@
 D:\Source\CatalysisLab\BatchReactionTest\ProblemTypes\obj\Debug\ProblemTypes.csprojAssemblyReference.cache
 D:\Source\CatalysisLab\BatchReactionTest\ProblemTypes\obj\Debug\ProblemTypes.csproj.CoreCompileInputs.cache
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\bin\Debug\ProblemTypes.dll
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\bin\Debug\ProblemTypes.pdb
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\bin\Debug\Reaction.dll
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\bin\Debug\Reaction.pdb
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\obj\Debug\ProblemTypes.csprojAssemblyReference.cache
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\obj\Debug\ProblemTypes.csproj.CoreCompileInputs.cache
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\obj\Debug\ProblemTypes.csproj.CopyComplete
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\obj\Debug\ProblemTypes.dll
+D:\Source\CatalysisLab\CatalysisKineticsLab\ProblemTypes\obj\Debug\ProblemTypes.pdb
