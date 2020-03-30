@@ -14,11 +14,11 @@ namespace Reaction.Calculators
 
         public Dictionary<Component, double> updateConcentrations(GlobalReaction globalReaction ,double timestep, double temperature, Dictionary<Component, double> currentConcentration)
         {
-            var returnConcentrationChange = new Dictionary<Component, double>();
+            var returnConcentrationChange = new Dictionary<Component, double>(new Component.EqualityComparer());
 
             foreach (var component in currentConcentration.Keys)
             {
-                returnConcentrationChange.Add(component, 0.0);
+                returnConcentrationChange.Add(component, currentConcentration[component]);
             }
 
             foreach (var partialReaction in globalReaction.PartialReactions)

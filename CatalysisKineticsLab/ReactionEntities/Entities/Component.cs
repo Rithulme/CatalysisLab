@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Reaction.Entities
 {
@@ -33,7 +34,20 @@ namespace Reaction.Entities
 
         public Component Copy()
         {
-            return new Component(this.Name,this.ChemicalComposition);
+            return new Component(this.Name, this.ChemicalComposition);
         }
+
+        public class EqualityComparer : IEqualityComparer<Component>
+        {
+            public bool Equals(Component componentRef, Component comparedComponent)
+            {
+                return string.Equals(componentRef.Name, comparedComponent.Name);
+            }
+
+            public int GetHashCode(Component componentRef) //todo: dit moeten we nog eens bekijken.
+            {
+                return 0;
+            }
+        }                  
     }
 }

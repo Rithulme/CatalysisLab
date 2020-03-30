@@ -79,27 +79,27 @@ namespace ProblemTypes
             var numberOfIterations = DetermineNumberOfIterations();
             double runningTimeCounter = 0.0;
 
-            for (int i = 0; i < numberOfIterations; i++)
+            for (long i = 0; i < numberOfIterations; i++)
             {
                 CurrentConcentration = _globalReactionCalculator.updateConcentrations(GlobalReaction ,Timestep, ReactionTemperature, CurrentConcentration);
                 runningTimeCounter = runningTimeCounter + Timestep;
 
                 if (runningTimeCounter >= ResultTimestep)
                 {
-
+                    //TODO: filling resultconcentration
                 }
             }
         }
 
-        private int DetermineNumberOfIterations()
+        private long DetermineNumberOfIterations()
         {
-            return (int)Math.Ceiling(TotalTime / Timestep);
+            return (long)Math.Ceiling(TotalTime / Timestep);
         }
 
         private void DetermineTimesteps()
         {
             var estimatedChange = 1.0;
-            var estimatedSpeed = 0.0;
+            var estimatedSpeed = 1.0;
             foreach (var elementaryReaction in GlobalReaction.PartialReactions)
             {
                 foreach (var component in elementaryReaction.LeftHandSide)
@@ -107,12 +107,7 @@ namespace ProblemTypes
                     estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
                         * Math.Pow(InitialConcentration[component.Item1], component.Item2));
                 }
-                foreach (var component in elementaryReaction.RightHandSide)
-                {
-                    estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
-                        * Math.Pow(InitialConcentration[component.Item1], component.Item2));
-                }
-                estimatedSpeed = Math.Min(Math.Min(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
+                estimatedSpeed = Math.Max(Math.Max(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
             }
 
             Timestep = estimatedChange / (estimatedSpeed * 1000.0);
@@ -122,8 +117,8 @@ namespace ProblemTypes
         private void Initialize()
         {
             
-            CurrentConcentration = new Dictionary<Component, double>();
-            ResultConcentration = new Dictionary<Component, List<double>>();
+            CurrentConcentration = new Dictionary<Component, double>(new Component.EqualityComparer());
+            ResultConcentration = new Dictionary<Component, List<double>>(new Component.EqualityComparer());
 
             foreach (var componentConcentrationPair in InitialConcentration)
             {

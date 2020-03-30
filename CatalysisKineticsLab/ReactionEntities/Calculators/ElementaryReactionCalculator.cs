@@ -13,7 +13,7 @@ namespace Reaction.Calculators
 
         public Dictionary<Component, double> UpdateConcentration(ElementaryReaction reaction ,Dictionary<Component, double> currentConcentration, double currentTemperature, double timestep)
         {
-            var returnDictionary = new Dictionary<Component, double>();
+            var returnDictionary = new Dictionary<Component, double>(new Component.EqualityComparer());
             foreach (var componentTuple in reaction.LeftHandSide)
             {
                 double prodConcentration = 1.0;
