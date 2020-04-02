@@ -86,7 +86,12 @@ namespace ProblemTypes
 
                 if (runningTimeCounter >= ResultTimestep)
                 {
-                    //TODO: filling resultconcentration
+                    foreach (KeyValuePair<Component, double> keyValue in CurrentConcentration)
+                    {
+                        ResultConcentration[keyValue.Key].Add(keyValue.Value);
+                    }
+
+                    runningTimeCounter = 0.0;
                 }
             }
         }
@@ -104,14 +109,19 @@ namespace ProblemTypes
             {
                 foreach (var component in elementaryReaction.LeftHandSide)
                 {
-                    estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
-                        * Math.Pow(InitialConcentration[component.Item1], component.Item2));
+                    if(InitialConcentration[component.Item1] > 0.0001)
+                    {
+                        estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
+                                * Math.Pow(InitialConcentration[component.Item1], component.Item2));
+                    }
                 }
                 estimatedSpeed = Math.Max(Math.Max(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
             }
 
-            Timestep = estimatedChange / (estimatedSpeed * 1000.0);
-            
+            Timestep = estimatedChange / (estimatedSpeed);
+
+            // at least 100  steps per resultstep
+            Timestep = Math.Min(Timestep, ResultTimestep / 100);            
         }
 
         private void Initialize()
