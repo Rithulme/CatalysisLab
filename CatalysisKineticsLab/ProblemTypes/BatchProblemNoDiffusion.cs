@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ProblemTypes
 {
-    public class BatchProblemNoDiffusion
+    public class BatchProblemNoDiffusion : IProblemType
     {
         private GlobalReaction _globalReaction;
         private double _reactionTemperature;
