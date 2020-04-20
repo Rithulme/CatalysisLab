@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProblemTypes;
 
 namespace Exercise
 {
-    public class BasicExercise
+    public class BasicExercise : IExercise
     {
+        public IProblemType Problem { get; set; }
+        public string Name { get; set; }
+
     }
 }

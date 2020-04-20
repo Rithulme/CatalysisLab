@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProblemTypes
+namespace Exercise
 {
-    public interface IProblemType
+    interface IExercise
     {
-        void Solve();
+        string Name { get; set; }
     }
 }
