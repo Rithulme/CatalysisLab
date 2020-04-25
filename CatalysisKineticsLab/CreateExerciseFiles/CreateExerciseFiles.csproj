@@ -50,6 +50,14 @@
       <Project>{52ec7721-e3ae-41d0-87b5-77b423cb8bb7}</Project>
       <Name>Exercise</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProblemTypes\ProblemTypes.csproj">
+      <Project>{F2521A02-5CC5-4669-914F-9486FFE02ADE}</Project>
+      <Name>ProblemTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilityTools\UtilityTools.csproj">
+      <Project>{7abd777a-58e6-4a9f-9f83-e8c467c2fdbc}</Project>
+      <Name>UtilityTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace UtilityTools
 {
-    class XMLGenerator
+    public class XMLHandler
     {
         public void SerializeObject<T>(T serializableObject, string fileName)
         {

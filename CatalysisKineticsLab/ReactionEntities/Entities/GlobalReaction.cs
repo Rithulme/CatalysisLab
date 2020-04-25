@@ -18,7 +18,12 @@ namespace Reaction.Entities
         {
             get { return _globalComponentList; }
             set { _globalComponentList = value; }
-        }        
+        }
+
+        public GlobalReaction()
+        {
+
+        }
 
         public GlobalReaction(List<ElementaryReaction> partialReactions)
         {

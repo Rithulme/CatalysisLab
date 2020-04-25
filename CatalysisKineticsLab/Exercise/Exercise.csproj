@@ -35,6 +35,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicExercise.cs" />
@@ -45,6 +46,10 @@
     <ProjectReference Include="..\ProblemTypes\ProblemTypes.csproj">
       <Project>{f2521a02-5cc5-4669-914f-9486ffe02ade}</Project>
       <Name>ProblemTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilityTools\UtilityTools.csproj">
+      <Project>{7ABD777A-58E6-4A9F-9F83-E8C467C2FDBC}</Project>
+      <Name>UtilityTools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

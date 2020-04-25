@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Xml.Serialization;
 
 namespace Exercise
 {
-    interface IExercise
+    public interface IExercise
     {
         string Name { get; set; }
     }

@@ -39,7 +39,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XMLGenerator.cs" />
+    <Compile Include="TestProblemGenerator.cs" />
+    <Compile Include="XMLAnything.cs" />
+    <Compile Include="XMLHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProblemTypes\ProblemTypes.csproj">
+      <Project>{F2521A02-5CC5-4669-914F-9486FFE02ADE}</Project>
+      <Name>ProblemTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReactionEntities\Reaction.csproj">
+      <Project>{538348C2-2C1F-41CE-907B-3B2740F25BA8}</Project>
+      <Name>Reaction</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

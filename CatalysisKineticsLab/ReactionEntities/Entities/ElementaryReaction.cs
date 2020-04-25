@@ -72,6 +72,11 @@ namespace Reaction.Entities
                 PreExponentialFactorForward, ActivationEnergyForward, PreExponentialFactorBackward, ActivationEnergyBackward);
         }
 
+        public ElementaryReaction()
+        {
+
+        }
+
         public ElementaryReaction(List<Tuple<Component, int>> leftHandSide, List<Tuple<Component, int>> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
             double preExponentialFactorBackward, double activationEnergyBackward)
         {

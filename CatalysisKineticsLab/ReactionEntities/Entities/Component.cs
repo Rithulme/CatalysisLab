@@ -21,6 +21,11 @@ namespace Reaction.Entities
             set { _chemicalComposition = value; }
         }
 
+        public Component()
+        {
+
+        }
+
         public Component(string name, string composition)
         {
             Name = name;

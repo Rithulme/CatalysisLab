@@ -53,6 +53,11 @@ namespace ProblemTypes
             set { _totalTime = value; }
         }
 
+        public BatchProblemNoDiffusion()
+        {
+
+        }
+
         public BatchProblemNoDiffusion(double totalTime, double resultTimestep, GlobalReaction globalReaction)
         {
             TotalTime = totalTime;
