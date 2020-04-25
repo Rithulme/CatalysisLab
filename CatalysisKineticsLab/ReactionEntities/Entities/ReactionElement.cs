@@ -28,5 +28,10 @@ namespace Reaction.Entities
             _power = power;
             _reactionComponent = component;
         }
+
+        public ReactionElement()
+        {
+
+        }
     }
 }
