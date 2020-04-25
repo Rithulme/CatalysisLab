@@ -44,10 +44,10 @@ namespace BatchReactionTest
         public static BatchProblemNoDiffusion CreateExampleOne()
         {
             // define partial reactions
-            var ListReaction1LHS = new List<Tuple<Component, int>>();
-            var ListReaction1RHS = new List<Tuple<Component, int>>();
-            ListReaction1LHS.Add(new Tuple<Component, int>(componentList[0], 1));
-            ListReaction1RHS.Add(new Tuple<Component, int>(componentList[1], 1));
+            var ListReaction1LHS = new List<ReactionElement>();
+            var ListReaction1RHS = new List<ReactionElement>();
+            ListReaction1LHS.Add(new ReactionElement(componentList[0], 1));
+            ListReaction1RHS.Add(new ReactionElement(componentList[1], 1));
 
             var Reaction1 = new ElementaryReaction(ListReaction1LHS, ListReaction1RHS, 250000, 50000, 125000, 52000);
 
@@ -64,17 +64,17 @@ namespace BatchReactionTest
         public static BatchProblemNoDiffusion CreateExampleTwo()
         {
             // define partial reactions
-            var ListReaction1LHS = new List<Tuple<Component, int>>();
-            var ListReaction1RHS = new List<Tuple<Component, int>>();
-            ListReaction1LHS.Add(new Tuple<Component, int>(componentList[0], 1));
-            ListReaction1RHS.Add(new Tuple<Component, int>(componentList[1], 1));
+            var ListReaction1LHS = new List<ReactionElement>();
+            var ListReaction1RHS = new List<ReactionElement>();
+            ListReaction1LHS.Add(new ReactionElement(componentList[0], 1));
+            ListReaction1RHS.Add(new ReactionElement(componentList[1], 1));
 
             var Reaction1 = new ElementaryReaction(ListReaction1LHS, ListReaction1RHS, 250000, 40000, 125000, 42000);
 
-            var ListReaction2LHS = new List<Tuple<Component, int>>();
-            var ListReaction2RHS = new List<Tuple<Component, int>>();
-            ListReaction2LHS.Add(new Tuple<Component, int>(componentList[1], 1));
-            ListReaction2RHS.Add(new Tuple<Component, int>(componentList[2], 1));
+            var ListReaction2LHS = new List<ReactionElement>();
+            var ListReaction2RHS = new List<ReactionElement>();
+            ListReaction2LHS.Add(new ReactionElement(componentList[1], 1));
+            ListReaction2RHS.Add(new ReactionElement(componentList[2], 1));
 
             var Reaction2 = new ElementaryReaction(ListReaction2LHS, ListReaction2RHS, 220000, 51000, 0, 52000);
 

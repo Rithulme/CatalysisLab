@@ -5,20 +5,20 @@ namespace Reaction.Entities
 {
     public class ElementaryReaction
     {
-        private Tuple<Component, int>[] _leftHandSide;
-        private Tuple<Component, int>[] _rightHandSide;
+        private ReactionElement[] _leftHandSide;
+        private ReactionElement[] _rightHandSide;
         private double _preExponentialFactorForward;
         private double _activationEnergyForward;
         private double _preExponentialFactorBackward;
         private double _activationEnergyBackward;
 
-        public Tuple<Component, int>[] LeftHandSide
+        public ReactionElement[] LeftHandSide
         {
             get { return _leftHandSide; }
             set { _leftHandSide = value; }
         }
 
-        public Tuple<Component, int>[] RightHandSide
+        public ReactionElement[] RightHandSide
         {
             get { return _rightHandSide; }
             set { _rightHandSide = value; }
@@ -50,25 +50,25 @@ namespace Reaction.Entities
 
         public ElementaryReaction Copy()
         {
-            var leftHandSide = new Tuple<Component,int>[LeftHandSide.Length];
-            var rightHandSide = new Tuple<Component, int>[RightHandSide.Length];
+            var leftHandSide = new ReactionElement[LeftHandSide.Length];
+            var rightHandSide = new ReactionElement[RightHandSide.Length];
             int counter = 0;
 
-            foreach (var componentTuple in LeftHandSide)
+            foreach (var reactionElement in LeftHandSide)
             {
-                leftHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                leftHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
                 counter++;
             }
 
             counter = 0;
 
-            foreach (var componentTuple in RightHandSide)
+            foreach (var reactionElement in RightHandSide)
             {
-                rightHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                rightHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
                 counter++;
             }
 
-            return new ElementaryReaction(new List<Tuple<Component, int>>(leftHandSide), new List<Tuple<Component, int>>(rightHandSide),
+            return new ElementaryReaction(new List<ReactionElement>(leftHandSide), new List<ReactionElement>(rightHandSide),
                 PreExponentialFactorForward, ActivationEnergyForward, PreExponentialFactorBackward, ActivationEnergyBackward);
         }
 
@@ -77,24 +77,24 @@ namespace Reaction.Entities
 
         }
 
-        public ElementaryReaction(List<Tuple<Component, int>> leftHandSide, List<Tuple<Component, int>> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
+        public ElementaryReaction(List<ReactionElement> leftHandSide, List<ReactionElement> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
             double preExponentialFactorBackward, double activationEnergyBackward)
         {
-            LeftHandSide = new Tuple<Component, int>[leftHandSide.Count];
-            RightHandSide = new Tuple<Component, int>[rightHandSide.Count];
+            LeftHandSide = new ReactionElement[leftHandSide.Count];
+            RightHandSide = new ReactionElement[rightHandSide.Count];
             int counter = 0;
 
-            foreach (var componentTuple in leftHandSide)
+            foreach (var reactionElement in leftHandSide)
             {
-                LeftHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                LeftHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
                 counter++;
             }
 
             counter = 0;
 
-            foreach (var componentTuple in rightHandSide)
+            foreach (var reactionElement in rightHandSide)
             {
-                RightHandSide[counter] = new Tuple<Component, int>(componentTuple.Item1.Copy(), componentTuple.Item2);
+                RightHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
                 counter++;
             }
 
@@ -118,19 +118,19 @@ namespace Reaction.Entities
         public List<Component> ListComponents()
         {
             List<Component> returnList = new List<Component>();
-            foreach (var componentTuple in LeftHandSide)
+            foreach (var reactionElement in LeftHandSide)
             {
-                if (!returnList.Contains(componentTuple.Item1))
+                if (!returnList.Contains(reactionElement.ReactionComponent))
                 {
-                    returnList.Add(componentTuple.Item1);
+                    returnList.Add(reactionElement.ReactionComponent);
                 }
             }
 
-            foreach (var componentTuple in RightHandSide)
+            foreach (var reactionElement in RightHandSide)
             {
-                if (!returnList.Contains(componentTuple.Item1))
+                if (!returnList.Contains(reactionElement.ReactionComponent))
                 {
-                    returnList.Add(componentTuple.Item1);
+                    returnList.Add(reactionElement.ReactionComponent);
                 }
             }
 

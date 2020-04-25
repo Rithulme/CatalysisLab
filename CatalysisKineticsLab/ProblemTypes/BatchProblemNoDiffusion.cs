@@ -112,12 +112,12 @@ namespace ProblemTypes
             var estimatedSpeed = 1.0;
             foreach (var elementaryReaction in GlobalReaction.PartialReactions)
             {
-                foreach (var component in elementaryReaction.LeftHandSide)
+                foreach (var reactionElement in elementaryReaction.LeftHandSide)
                 {
-                    if(InitialConcentration[component.Item1] > 0.0001)
+                    if(InitialConcentration[reactionElement.ReactionComponent] > 0.0001)
                     {
                         estimatedChange = Math.Min(estimatedChange, Math.Abs(elementaryReaction.ForwardRateCoefficient(ReactionTemperature))
-                                * Math.Pow(InitialConcentration[component.Item1], component.Item2));
+                                * Math.Pow(InitialConcentration[reactionElement.ReactionComponent], reactionElement.Power));
                     }
                 }
                 estimatedSpeed = Math.Max(Math.Max(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);

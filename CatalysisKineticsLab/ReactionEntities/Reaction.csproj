@@ -42,6 +42,7 @@
     <Compile Include="Entities\Component.cs" />
     <Compile Include="Entities\ElementaryReaction.cs" />
     <Compile Include="Entities\GlobalReaction.cs" />
+    <Compile Include="Entities\ReactionElement.cs" />
     <Compile Include="PhysicalConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
