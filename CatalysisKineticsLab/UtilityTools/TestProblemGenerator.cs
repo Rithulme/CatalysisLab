@@ -17,7 +17,7 @@ namespace UtilityTools
             return componentList;
         }
 
-        public static XmlAnything<IProblemType> CreateExample()
+        public static BatchProblemNoDiffusion CreateExample()
         {
             var componentList = MakeComponents();
 
@@ -33,7 +33,7 @@ namespace UtilityTools
             List<ElementaryReaction> reactionList = new List<ElementaryReaction> { Reaction1 };
             var GlobalReaction = new GlobalReaction(reactionList);
 
-            return new XmlAnything<IProblemType>(new BatchProblemNoDiffusion(1000.0, 10, GlobalReaction));
+            return new BatchProblemNoDiffusion(1000.0, 10, GlobalReaction);
 
         }
     }

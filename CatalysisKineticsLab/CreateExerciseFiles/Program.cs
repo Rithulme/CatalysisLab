@@ -1,5 +1,6 @@
 ﻿using Exercise;
 using UtilityTools;
+using Newtonsoft.Json;
 
 namespace CreateExerciseFiles
 {
@@ -15,7 +16,7 @@ namespace CreateExerciseFiles
             };
             var location = @"D:\Gebruiker\Documents\CatalysisKineticsLab\XMLTest";
 
-            XMLHandler.SerializeObject<BasicExercise>(testExercise, location);
+            var test = JsonConvert.SerializeObject(testExercise);
         }
     }
 }
