@@ -8,15 +8,15 @@ namespace CreateExerciseFiles
     {
         static void Main(string[] args)
         {
-            var XMLHandler = new XMLHandler();
+            var JSONHandler = new JSONHandler();
             var testExercise = new BasicExercise()
             {
                 Name = "testOefening",
                 Problem = TestProblemGenerator.CreateExample()
             };
-            var location = @"D:\Gebruiker\Documents\CatalysisKineticsLab\XMLTest";
-
-            var test = JsonConvert.SerializeObject(testExercise);
+            var location = @"D:\Gebruiker\Documents\CatalysisKineticsLab\JSONTest\test.txt";
+            JSONHandler.SerializeObject<BasicExercise>(testExercise, location);
+            
         }
     }
 }
