@@ -17,8 +17,8 @@
             <ColumnDefinition Width="4.25cm"/>
             <ColumnDefinition Width="8.25cm"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin ="10,0,0,0" Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
-        <Button Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="125"/>
+        <TextBlock Name ="ExerciseName"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin ="10,0,0,0" Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        <Button Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="125" Name="Browse" Click="btnBrowse_Click"/>
         <Button Content="Laden" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Width="125"/>
 
         <Grid Grid.Column="0" Grid.Row="1">

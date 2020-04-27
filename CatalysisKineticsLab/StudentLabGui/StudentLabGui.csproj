@@ -94,5 +94,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Exercise\Exercise.csproj">
+      <Project>{52EC7721-E3AE-41D0-87B5-77B423CB8BB7}</Project>
+      <Name>Exercise</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UtilityTools\UtilityTools.csproj">
+      <Project>{7ABD777A-58E6-4A9F-9F83-E8C467C2FDBC}</Project>
+      <Name>UtilityTools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
