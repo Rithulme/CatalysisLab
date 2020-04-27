@@ -9,12 +9,27 @@ namespace UtilityTools
         {
             using (StreamWriter file = File.CreateText(fileName))
             {
-                JsonSerializer serializer = new JsonSerializer();
+                JsonSerializer serializer = new JsonSerializer(); serializer.Converters.Add(new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter());
+                serializer.NullValueHandling = NullValueHandling.Ignore;
+                serializer.TypeNameHandling = TypeNameHandling.Auto;
                 //serialize object directly into file stream
-                serializer.Serialize(file, serializableObject);
+                serializer.Serialize(file, serializableObject, typeof(T));
             }
-            //var JSONString = JsonConvert.SerializeObject(serializableObject);
-            //File.Open(fileName;
+        }
+
+        public T DeSerializeObject<T>(string fileName)
+        {
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                var jsonSettings = new Newtonsoft.Json.JsonSerializerSettings
+                {
+                    TypeNameHandling = TypeNameHandling.Auto,
+                    NullValueHandling = NullValueHandling.Ignore
+                };
+                //read and deserialize
+                var JSONString = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<T>(JSONString, jsonSettings);
+            }
         }
     }
 }

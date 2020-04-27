@@ -16,6 +16,8 @@ namespace CreateExerciseFiles
             };
             var location = @"D:\Gebruiker\Documents\CatalysisKineticsLab\JSONTest\test.txt";
             JSONHandler.SerializeObject<BasicExercise>(testExercise, location);
+
+            var readFile = JSONHandler.DeSerializeObject<BasicExercise>(location);
             
         }
     }
