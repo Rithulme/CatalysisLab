@@ -2,6 +2,7 @@
 using Reaction.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ProblemTypes
 {
@@ -99,6 +100,11 @@ namespace ProblemTypes
                     runningTimeCounter = 0.0;
                 }
             }
+        }
+
+        public List<Component> getComponents()
+        {
+            return GlobalReaction.GlobalComponentList.ToList();
         }
 
         private long DetermineNumberOfIterations()

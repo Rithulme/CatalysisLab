@@ -99,6 +99,14 @@
       <Project>{52EC7721-E3AE-41D0-87B5-77B423CB8BB7}</Project>
       <Name>Exercise</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ProblemTypes\ProblemTypes.csproj">
+      <Project>{F2521A02-5CC5-4669-914F-9486FFE02ADE}</Project>
+      <Name>ProblemTypes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReactionEntities\Reaction.csproj">
+      <Project>{538348C2-2C1F-41CE-907B-3B2740F25BA8}</Project>
+      <Name>Reaction</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UtilityTools\UtilityTools.csproj">
       <Project>{7ABD777A-58E6-4A9F-9F83-E8C467C2FDBC}</Project>
       <Name>UtilityTools</Name>

@@ -19,9 +19,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Name ="ExerciseName"  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" Margin ="10,0,0,0" Text="TextBlock" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         <Button Content="Browse" Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" VerticalAlignment="Center" Width="125" Name="Browse" Click="btnBrowse_Click"/>
-        <Button Content="Laden" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Width="125"/>
+        <Button Content="Laden" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center" Width="125" Name="Load" Click="btnLoad_click"/>
 
-        <Grid Grid.Column="0" Grid.Row="1">
+        <Grid Grid.Column="0" Grid.Row="1" Name="ConcenrationContainer">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2cm"/>
                 <RowDefinition Height="2cm"/>
@@ -38,13 +38,13 @@
                 <ColumnDefinition Width="4.15cm"/>
                 <ColumnDefinition Width="4.15cm"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
-            <ComboBox Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+            <ComboBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu1"/>
+            <ComboBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu2"/>
+            <ComboBox Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu3"/>
+            <ComboBox Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu4"/>
+            <ComboBox Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu5"/>
+            <ComboBox Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu6"/>
+            <ComboBox Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name = "ComponentMenu7"/>
 
             <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
             <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Reaction.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProblemTypes
 {
     public interface IProblemType
     {
         void Solve();
+        List<Component> getComponents();
     }
 }
