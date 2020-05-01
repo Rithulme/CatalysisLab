@@ -36,11 +36,16 @@ namespace StudentLabGui
             if (loadedExercise != null)
             {
                 var componentList = loadedExercise.Problem.getComponents();
-                fillDropdownMenu(componentList);
+                List<string> componentNames = new List<string>();
+                foreach (var component in componentList)
+                {
+                    componentNames.Add(component.Name);
+                }
+                fillDropdownMenu(componentNames);
             }
         }
 
-        private void fillDropdownMenu(List<Component> componentList)
+        private void fillDropdownMenu(List<string> componentNames)
         {
             var mainContainer = (Panel)this.Content;
             var elements = mainContainer.Children;
@@ -50,6 +55,12 @@ namespace StudentLabGui
             var containerContents = dropDownContainer.Children;
             lstElement = containerContents.Cast<FrameworkElement>().ToList();
             var dropDownMenus = lstElement.Where(x => x.Name.Contains("Menu")); //todo:this needs to be casted when used!
+
+            foreach (var menu in dropDownMenus)
+            {
+                var castedMenu = (ComboBox)menu;
+                castedMenu.ItemsSource = componentNames;
+            }
         }
     }
 }
