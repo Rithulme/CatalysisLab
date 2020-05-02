@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using UtilityTools;
+using System;
 
 namespace StudentLabGui
 {
@@ -31,7 +32,7 @@ namespace StudentLabGui
             }        
         }
 
-        private void btnLoad_click(object sender, RoutedEventArgs e)
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
             if (loadedExercise != null)
             {
@@ -45,16 +46,52 @@ namespace StudentLabGui
             }
         }
 
-        private void fillDropdownMenu(List<string> componentNames)
+        private void btnRun_Click(object sender, RoutedEventArgs e)
+        {
+            setInitialConcentrations();
+        }
+
+        private void setInitialConcentrations()
         {
             var mainContainer = (Panel)this.Content;
             var elements = mainContainer.Children;
-            //cast to a list
             List<FrameworkElement> lstElement = elements.Cast<FrameworkElement>().ToList();
             Grid dropDownContainer = (Grid)lstElement.Where(x => x.Name.Equals("ConcenrationContainer")).First();
             var containerContents = dropDownContainer.Children;
             lstElement = containerContents.Cast<FrameworkElement>().ToList();
-            var dropDownMenus = lstElement.Where(x => x.Name.Contains("Menu")); //todo:this needs to be casted when used!
+            var dropDownMenus = lstElement.Where(x => x.Name.Contains("Menu"));
+            var concentrationFields = lstElement.Where(x => x.Name.Contains("Concentration"));
+
+            foreach (var field in concentrationFields)
+            {
+                var textBox = (TextBox)field;
+                if (!String.IsNullOrEmpty(textBox.Text))
+                {
+                    var nummer = field.Name.Substring(field.Name.Length - 1);
+                    var dropDownMenu = (ComboBox)dropDownMenus.Where(x => x.Name.Contains(nummer)).Last();
+                    string componentName = (string)dropDownMenu.SelectedValue;
+                    if (!String.IsNullOrEmpty(componentName))
+                    {
+                        var components = loadedExercise.Problem.getComponents();
+                        var selectedComponent = components.Where(x => x.Name.Equals(componentName)).First().Copy();
+                        if (!loadedExercise.Problem.InitialConcentration.ContainsKey(selectedComponent))
+                        {
+                            loadedExercise.Problem.InitialConcentration.Add(selectedComponent, Int32.Parse(textBox.Text));
+                        }
+                    }
+                }
+            }
+        }
+
+        private void fillDropdownMenu(List<string> componentNames)
+        {
+            var mainContainer = (Panel)this.Content;
+            var elements = mainContainer.Children;
+            List<FrameworkElement> lstElement = elements.Cast<FrameworkElement>().ToList();
+            Grid dropDownContainer = (Grid)lstElement.Where(x => x.Name.Equals("ConcenrationContainer")).First();
+            var containerContents = dropDownContainer.Children;
+            lstElement = containerContents.Cast<FrameworkElement>().ToList();
+            var dropDownMenus = lstElement.Where(x => x.Name.Contains("Menu")); 
 
             foreach (var menu in dropDownMenus)
             {
