@@ -49,6 +49,24 @@ namespace StudentLabGui
         private void btnRun_Click(object sender, RoutedEventArgs e)
         {
             setInitialConcentrations();
+            setTemperature();
+            setTimeStep();
+        }
+
+        private void setTimeStep()
+        {
+            string timeStepString = TimeStep.Text;
+            timeStepString = timeStepString.Replace(',', '.');
+            double timeStep = Double.Parse(timeStepString);
+            loadedExercise.Problem.ResultTimestep = timeStep;
+        }
+
+        private void setTemperature()
+        {
+            string temperatureString = Temperature.Text;
+            temperatureString = temperatureString.Replace(',', '.');
+            var temperature = Double.Parse(temperatureString);
+            loadedExercise.Problem.ReactionTemperature = temperature;
         }
 
         private void setInitialConcentrations()
