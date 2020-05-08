@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using UtilityTools;
 using System;
+using StudentLabGui.Entities;
 
 namespace StudentLabGui
 {
@@ -16,6 +17,10 @@ namespace StudentLabGui
     public partial class MainWindow : Window
     {
         private BasicExercise loadedExercise;
+        private List<ResultsData> resultsList;
+        private const int numberOfInputs = 7;
+
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +56,39 @@ namespace StudentLabGui
             setInitialConcentrations();
             setTemperature();
             setTimeStep();
+            solveReaction();
+            var currentResults = new ResultsWindow(resultsList);
+            currentResults.Show();
+        }
+
+        private void solveReaction()
+        {
+            loadedExercise.Problem.Solve();
+            resultsList = new List<ResultsData>();
+            var componentList = loadedExercise.Problem.getComponents();
+            int length = loadedExercise.Problem.ResultConcentration[componentList[0]].Count();
+
+            for (int i = 0; i < length; i++)
+            {
+                var addedRow = new ResultsData();
+                var resultsConcentrationRow = new double [] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
+                int counter = 0;
+                foreach (var component in componentList)
+                {
+                    resultsConcentrationRow[counter] = loadedExercise.Problem.ResultConcentration[component][i];
+                }
+
+                addedRow.Conc1 = resultsConcentrationRow[0];
+                addedRow.Conc2 = resultsConcentrationRow[1];
+                addedRow.Conc3 = resultsConcentrationRow[2];
+                addedRow.Conc4 = resultsConcentrationRow[3];
+                addedRow.Conc5 = resultsConcentrationRow[4];
+                addedRow.Conc6 = resultsConcentrationRow[5];
+                addedRow.Conc7 = resultsConcentrationRow[6];
+
+                resultsList.Add(addedRow);
+            }
+
         }
 
         private void setTimeStep()
@@ -66,7 +104,7 @@ namespace StudentLabGui
             string temperatureString = Temperature.Text;
             temperatureString = temperatureString.Replace(',', '.');
             var temperature = Double.Parse(temperatureString);
-            loadedExercise.Problem.ReactionTemperature = temperature;
+            loadedExercise.Problem.ReactionTemperature = temperature + 273.16;
         }
 
         private void setInitialConcentrations()
@@ -92,9 +130,9 @@ namespace StudentLabGui
                     {
                         var components = loadedExercise.Problem.getComponents();
                         var selectedComponent = components.Where(x => x.Name.Equals(componentName)).First().Copy();
-                        if (!loadedExercise.Problem.InitialConcentration.ContainsKey(selectedComponent))
+                        if (loadedExercise.Problem.InitialConcentration == null || !loadedExercise.Problem.InitialConcentration.ContainsKey(selectedComponent))
                         {
-                            loadedExercise.Problem.InitialConcentration.Add(selectedComponent, Int32.Parse(textBox.Text));
+                            loadedExercise.Problem.InitialConcentration.Add(selectedComponent, Double.Parse(textBox.Text));
                         }
                     }
                 }

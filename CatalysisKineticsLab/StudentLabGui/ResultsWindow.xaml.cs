@@ -1,16 +1,7 @@
-﻿using System;
+﻿using Exercise;
+using StudentLabGui.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace StudentLabGui
 {
@@ -19,9 +10,15 @@ namespace StudentLabGui
     /// </summary>
     public partial class ResultsWindow : Window
     {
-        public ResultsWindow()
+        public ResultsWindow(List<ResultsData> resultsList)
         {
             InitializeComponent();
+            FillDatagrid(resultsList);
+        }
+
+        private void FillDatagrid(List<ResultsData> resultsList)
+        {
+            Results.ItemsSource = resultsList;
         }
     }
 }
