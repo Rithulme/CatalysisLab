@@ -55,7 +55,7 @@ namespace StudentLabGui
         {
             setInitialConcentrations();
             setTemperature();
-            setTimeStep();
+            setTimeStep(); // todo, set total time of experiment
             solveReaction();
             var currentResults = new ResultsWindow(resultsList);
             currentResults.Show();
@@ -76,6 +76,7 @@ namespace StudentLabGui
                 foreach (var component in componentList)
                 {
                     resultsConcentrationRow[counter] = loadedExercise.Problem.ResultConcentration[component][i];
+                    counter++;
                 }
 
                 addedRow.Conc1 = resultsConcentrationRow[0];
@@ -97,6 +98,11 @@ namespace StudentLabGui
             timeStepString = timeStepString.Replace(',', '.');
             double timeStep = Double.Parse(timeStepString);
             loadedExercise.Problem.ResultTimestep = timeStep;
+
+            string totalTimeString = TotalTime.Text;
+            totalTimeString = totalTimeString.Replace(',', '.');
+            double totalTime = Double.Parse(totalTimeString);
+            loadedExercise.Problem.TotalTime = totalTime;
         }
 
         private void setTemperature()
@@ -117,6 +123,8 @@ namespace StudentLabGui
             lstElement = containerContents.Cast<FrameworkElement>().ToList();
             var dropDownMenus = lstElement.Where(x => x.Name.Contains("Menu"));
             var concentrationFields = lstElement.Where(x => x.Name.Contains("Concentration"));
+
+            loadedExercise.Problem.InitialConcentration = new Dictionary<Component, double>(new Component.EqualityComparer());
 
             foreach (var field in concentrationFields)
             {

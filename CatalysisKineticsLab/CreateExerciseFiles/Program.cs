@@ -13,7 +13,8 @@ namespace CreateExerciseFiles
             {
                 Name = "testOefening",
                 Problem = TestProblemGenerator.CreateExample()
-            };
+            };            
+
             var location = @"D:\Gebruiker\Documents\CatalysisKineticsLab\JSONTest\test.txt";
             JSONHandler.SerializeObject<BasicExercise>(testExercise, location);
 

@@ -83,9 +83,11 @@
 
             <TextBox Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name ="Temperature"/>
             <TextBox Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name ="TimeStep"/>
+            <TextBox Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Name ="TotalTime"/>
 
             <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Text="°C" Width="120"/>
             <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Tijd tussen metingen (s)" Width="130" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Totale tijd (s)" Width="130" TextWrapping="Wrap"/>
 
             <Button Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="6" Content="Start experiment" HorizontalAlignment="Center" Click="btnRun_Click"  VerticalAlignment="Center" Width="200" Height="40"/>
 

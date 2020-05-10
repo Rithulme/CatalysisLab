@@ -56,6 +56,7 @@ namespace BatchReactionTest
             var GlobalReaction = new GlobalReaction(reactionList);
 
             var returnproblem = new BatchProblemNoDiffusion(1000.0,10,GlobalReaction);
+            returnproblem.InitialConcentration = new Dictionary<Component, double>(new Component.EqualityComparer());
 
             return returnproblem;
 

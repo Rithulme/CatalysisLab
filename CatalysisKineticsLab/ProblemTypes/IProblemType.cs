@@ -8,6 +8,7 @@ namespace ProblemTypes
         Dictionary<Component, double> InitialConcentration { get; set; }
         double ReactionTemperature { get; set; }
         double ResultTimestep { get; set; }
+        double TotalTime { get; set; }
         Dictionary<Component, List<double>> ResultConcentration { get; set; }
 
         void Solve();

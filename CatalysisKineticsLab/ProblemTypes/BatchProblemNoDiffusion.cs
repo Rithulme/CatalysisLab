@@ -56,7 +56,7 @@ namespace ProblemTypes
 
         public BatchProblemNoDiffusion()
         {
-
+            _globalReactionCalculator = new GlobalReactionCalculator();
         }
 
         public BatchProblemNoDiffusion(double totalTime, double resultTimestep, GlobalReaction globalReaction)
