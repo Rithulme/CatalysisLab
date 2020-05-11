@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using UtilityTools;
 using System;
 using StudentLabGui.Entities;
+using System.Globalization;
 
 namespace StudentLabGui
 {
@@ -18,6 +19,7 @@ namespace StudentLabGui
     {
         private BasicExercise loadedExercise;
         private List<ResultsData> resultsList;
+        private List<String> componentNames;
         private const int numberOfInputs = 7;
 
 
@@ -57,7 +59,7 @@ namespace StudentLabGui
             setTemperature();
             setTimeStep(); // todo, set total time of experiment
             solveReaction();
-            var currentResults = new ResultsWindow(resultsList);
+            var currentResults = new ResultsWindow(resultsList, componentNames, numberOfInputs + 1);
             currentResults.Show();
         }
 
@@ -66,6 +68,13 @@ namespace StudentLabGui
             loadedExercise.Problem.Solve();
             resultsList = new List<ResultsData>();
             var componentList = loadedExercise.Problem.getComponents();
+            componentNames = new List<string> { "Tijdstap (s)" };
+
+            foreach (var component in componentList)
+            {
+                componentNames.Add(component.Name);
+            }
+
             int length = loadedExercise.Problem.ResultConcentration[componentList[0]].Count();
 
             for (int i = 0; i < length; i++)
@@ -89,27 +98,23 @@ namespace StudentLabGui
 
                 resultsList.Add(addedRow);
             }
-
         }
 
         private void setTimeStep()
         {
             string timeStepString = TimeStep.Text;
-            timeStepString = timeStepString.Replace(',', '.');
-            double timeStep = Double.Parse(timeStepString);
+            double timeStep = Double.Parse(timeStepString, NumberStyles.Any, CultureInfo.InvariantCulture);
             loadedExercise.Problem.ResultTimestep = timeStep;
 
             string totalTimeString = TotalTime.Text;
-            totalTimeString = totalTimeString.Replace(',', '.');
-            double totalTime = Double.Parse(totalTimeString);
+            double totalTime = Double.Parse(totalTimeString, NumberStyles.Any, CultureInfo.InvariantCulture);
             loadedExercise.Problem.TotalTime = totalTime;
         }
 
         private void setTemperature()
         {
             string temperatureString = Temperature.Text;
-            temperatureString = temperatureString.Replace(',', '.');
-            var temperature = Double.Parse(temperatureString);
+            var temperature = Double.Parse(temperatureString, NumberStyles.Any, CultureInfo.InvariantCulture);
             loadedExercise.Problem.ReactionTemperature = temperature + 273.16;
         }
 
@@ -140,7 +145,7 @@ namespace StudentLabGui
                         var selectedComponent = components.Where(x => x.Name.Equals(componentName)).First().Copy();
                         if (loadedExercise.Problem.InitialConcentration == null || !loadedExercise.Problem.InitialConcentration.ContainsKey(selectedComponent))
                         {
-                            loadedExercise.Problem.InitialConcentration.Add(selectedComponent, Double.Parse(textBox.Text));
+                            loadedExercise.Problem.InitialConcentration.Add(selectedComponent, Double.Parse(textBox.Text, NumberStyles.Any, CultureInfo.InvariantCulture));
                         }
                     }
                 }
