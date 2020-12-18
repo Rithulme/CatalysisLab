@@ -1,74 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Reaction.Entities
 {
     public class ElementaryReaction
     {
-        private ReactionElement[] _leftHandSide;
-        private ReactionElement[] _rightHandSide;
-        private double _preExponentialFactorForward;
-        private double _activationEnergyForward;
-        private double _preExponentialFactorBackward;
-        private double _activationEnergyBackward;
+        public List<ReactionElement> LeftHandSide { get; set; }
 
-        public ReactionElement[] LeftHandSide
-        {
-            get { return _leftHandSide; }
-            set { _leftHandSide = value; }
-        }
+        public List<ReactionElement> RightHandSide { get; set; }
 
-        public ReactionElement[] RightHandSide
-        {
-            get { return _rightHandSide; }
-            set { _rightHandSide = value; }
-        }        
+        public double PreExponentialFactorForward { get; set; }
 
-        public double PreExponentialFactorForward
-        {
-            get { return _preExponentialFactorForward; }
-            set { _preExponentialFactorForward = value; }
-        }
+        public double ActivationEnergyForward { get; set; }
 
-        public double ActivationEnergyForward
-        {
-            get { return _activationEnergyForward; }
-            set { _activationEnergyForward = value; }
-        }
+        public double PreExponentialFactorBackward { get; set; }
 
-        public double PreExponentialFactorBackward
-        {
-            get { return _preExponentialFactorBackward; }
-            set { _preExponentialFactorBackward = value; }
-        }
-
-        public double ActivationEnergyBackward
-        {
-            get { return _activationEnergyBackward; }
-            set { _activationEnergyBackward = value; }
-        }
+        public double ActivationEnergyBackward { get; set; }
 
         public ElementaryReaction Copy()
         {
-            var leftHandSide = new ReactionElement[LeftHandSide.Length];
-            var rightHandSide = new ReactionElement[RightHandSide.Length];
-            int counter = 0;
+            var leftHandSide = new List<ReactionElement>();
+            var rightHandSide = new List<ReactionElement>();
 
             foreach (var reactionElement in LeftHandSide)
             {
-                leftHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
-                counter++;
+                leftHandSide.Add(new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power));
             }
-
-            counter = 0;
 
             foreach (var reactionElement in RightHandSide)
             {
-                rightHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
-                counter++;
+                rightHandSide.Add(new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power));
             }
 
-            return new ElementaryReaction(new List<ReactionElement>(leftHandSide), new List<ReactionElement>(rightHandSide),
+            return new ElementaryReaction(leftHandSide, rightHandSide,
                 PreExponentialFactorForward, ActivationEnergyForward, PreExponentialFactorBackward, ActivationEnergyBackward);
         }
 
@@ -80,22 +45,17 @@ namespace Reaction.Entities
         public ElementaryReaction(List<ReactionElement> leftHandSide, List<ReactionElement> rightHandSide, double preExponentialFactorForward, double activationEnergyForward,
             double preExponentialFactorBackward, double activationEnergyBackward)
         {
-            LeftHandSide = new ReactionElement[leftHandSide.Count];
-            RightHandSide = new ReactionElement[rightHandSide.Count];
-            int counter = 0;
+            LeftHandSide = new List<ReactionElement>();
+            RightHandSide = new List<ReactionElement>();
 
             foreach (var reactionElement in leftHandSide)
             {
-                LeftHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
-                counter++;
+                LeftHandSide.Add(new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power));
             }
-
-            counter = 0;
 
             foreach (var reactionElement in rightHandSide)
             {
-                RightHandSide[counter] = new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power);
-                counter++;
+                RightHandSide.Add(new ReactionElement(reactionElement.ReactionComponent.Copy(), reactionElement.Power));
             }
 
             PreExponentialFactorForward = preExponentialFactorForward;
