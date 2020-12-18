@@ -6,21 +6,11 @@ namespace Reaction.Entities
 {
     public class Component
     {
-        private string _name;
-        private string _chemicalComposition;
 
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
+        public string Name { get; set; }
 
-        public string ChemicalComposition
-        {
-            get { return _chemicalComposition; }
-            set { _chemicalComposition = value; }
-        }
-
+        public string ChemicalComposition { get; set; }
+                
         public Component()
         {
 
