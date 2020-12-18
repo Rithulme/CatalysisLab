@@ -5,20 +5,9 @@ namespace Reaction.Entities
 {
     public class GlobalReaction
     {
-        private ElementaryReaction[] _partialReactions;
-        private Component[] _globalComponentList;
+        public List<ElementaryReaction> PartialReactions { get; set; }
 
-        public ElementaryReaction[] PartialReactions
-        {
-            get { return _partialReactions; }
-            set { _partialReactions = value; }
-        }
-               
-        public Component[] GlobalComponentList
-        {
-            get { return _globalComponentList; }
-            set { _globalComponentList = value; }
-        }
+        public List<Component> GlobalComponentList { get; set; }
 
         public GlobalReaction()
         {
@@ -28,14 +17,12 @@ namespace Reaction.Entities
         public GlobalReaction(List<ElementaryReaction> partialReactions)
         {
             //Make a deep copy of the partial reactions
-            PartialReactions = new ElementaryReaction[partialReactions.Count];
-            int counter = 0;
+            PartialReactions = new List<ElementaryReaction>();
 
             foreach (var partialReaction in partialReactions)
             {
-                PartialReactions[counter] = new ElementaryReaction(partialReaction.LeftHandSide.ToList(), partialReaction.RightHandSide.ToList(), partialReaction.PreExponentialFactorForward,
-                    partialReaction.ActivationEnergyForward, partialReaction.PreExponentialFactorBackward, partialReaction.ActivationEnergyBackward);
-                counter++;
+                PartialReactions.Add(new ElementaryReaction(partialReaction.LeftHandSide.ToList(), partialReaction.RightHandSide.ToList(), partialReaction.PreExponentialFactorForward,
+                    partialReaction.ActivationEnergyForward, partialReaction.PreExponentialFactorBackward, partialReaction.ActivationEnergyBackward));
             }
 
             GlobalComponentList = ListComponents();           
@@ -53,7 +40,7 @@ namespace Reaction.Entities
             return new GlobalReaction(partialReactions);
         }
 
-        private Component[] ListComponents()
+        private List<Component> ListComponents()
         {
             List<Component> componentList = new List<Component>();
 
@@ -62,7 +49,7 @@ namespace Reaction.Entities
                 componentList.AddRange(elementaryReaction.ListComponents());
             }
 
-            return componentList.ToArray();
+            return componentList;
         }
     }
 }
