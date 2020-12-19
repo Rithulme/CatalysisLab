@@ -8,51 +8,19 @@ namespace ProblemTypes
 {
     public class BatchProblemNoDiffusion : IProblemType
     {
-        private GlobalReaction _globalReaction;
-        private double _reactionTemperature;
-        private Dictionary<Component, double> _initialConcentration;
-        private double _timestep;
-        private double _resultTimestep;
-        private Dictionary<Component, List<double>> _resultConcentration;
-        private Dictionary<Component, double> _currentConcentration;
-        private double _totalTime;
         private readonly GlobalReactionCalculator _globalReactionCalculator;
 
-        public GlobalReaction GlobalReaction
-        {
-            get { return _globalReaction; }
-            set { _globalReaction = value; }
-        }       
+        public GlobalReaction GlobalReaction { get; set; }
 
-        public double ReactionTemperature
-        {
-            get { return _reactionTemperature; }
-            set { _reactionTemperature = value; }
-        }       
+        public double ReactionTemperature { get; set; }
 
-        public Dictionary<Component, double> InitialConcentration
-        {
-            get { return _initialConcentration; }
-            set { _initialConcentration = value; }
-        }
-               
-        public double Timestep
-        {
-            get { return _timestep; }
-            set { _timestep = value; }
-        }        
+        public Dictionary<Component, double> InitialConcentration { get; set; }
 
-        public double ResultTimestep
-        {
-            get { return _resultTimestep; }
-            set { _resultTimestep = value; }
-        }
+        public double Timestep { get; set; }
 
-        public double TotalTime
-        {
-            get { return _totalTime; }
-            set { _totalTime = value; }
-        }
+        public double ResultTimestep { get; set; }
+
+        public double TotalTime { get; set; }
 
         public BatchProblemNoDiffusion()
         {
@@ -66,17 +34,9 @@ namespace ProblemTypes
             _globalReactionCalculator = new GlobalReactionCalculator();
         }
 
-        public Dictionary<Component, List<double>> ResultConcentration
-        {
-            get { return _resultConcentration; }
-            set { _resultConcentration = value; }
-        }
+        public Dictionary<Component, List<double>> ResultConcentration { get; set; }
 
-        public Dictionary<Component, double> CurrentConcentration
-        {
-            get { return _currentConcentration; }
-            set { _currentConcentration = value; }
-        }
+        public Dictionary<Component, double> CurrentConcentration { get; set; }
 
         public void Solve()
         {
