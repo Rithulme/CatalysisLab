@@ -46,7 +46,13 @@ namespace Reaction.Entities
 
             foreach (var elementaryReaction in PartialReactions)
             {
-                componentList.AddRange(elementaryReaction.ListComponents());
+                foreach (var component in elementaryReaction.ListComponents())
+                {
+                    if (!componentList.Contains(component,new Component.EqualityComparer()))
+                    {
+                        componentList.Add(component);
+                    }
+                }                
             }
 
             return componentList;
