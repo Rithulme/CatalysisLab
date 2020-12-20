@@ -21,8 +21,7 @@ namespace StudentLabGui
         private List<ResultsData> resultsList;
         private List<String> componentNames;
         private const int numberOfInputs = 7;
-
-
+        
         public MainWindow()
         {
             InitializeComponent();

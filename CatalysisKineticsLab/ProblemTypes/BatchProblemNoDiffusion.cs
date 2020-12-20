@@ -18,6 +18,8 @@ namespace ProblemTypes
 
         public double Timestep { get; set; }
 
+        public int NumberOfSamples { get; set; }
+
         public double ResultTimestep { get; set; }
 
         public double TotalTime { get; set; }
@@ -27,9 +29,15 @@ namespace ProblemTypes
             _globalReactionCalculator = new GlobalReactionCalculator();
         }
 
-        public BatchProblemNoDiffusion(double totalTime, double resultTimestep, GlobalReaction globalReaction)
+        public BatchProblemNoDiffusion(double totalTime, int resultTimestep, GlobalReaction globalReaction)
         {
             TotalTime = totalTime;
+            GlobalReaction = globalReaction.Copy();
+            _globalReactionCalculator = new GlobalReactionCalculator();
+        }
+
+        public BatchProblemNoDiffusion(GlobalReaction globalReaction)
+        {
             GlobalReaction = globalReaction.Copy();
             _globalReactionCalculator = new GlobalReactionCalculator();
         }
@@ -92,7 +100,8 @@ namespace ProblemTypes
             Timestep = estimatedChange / (estimatedSpeed);
 
             // at least 100  steps per resultstep
-            Timestep = Math.Min(Timestep, ResultTimestep / 100);            
+            Timestep = Math.Min(Timestep, ResultTimestep / 100);
+            
         }
 
         private void Initialize()
