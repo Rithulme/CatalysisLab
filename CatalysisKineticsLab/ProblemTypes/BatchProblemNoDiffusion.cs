@@ -97,7 +97,7 @@ namespace ProblemTypes
                 estimatedSpeed = Math.Max(Math.Max(elementaryReaction.ForwardRateCoefficient(ReactionTemperature), elementaryReaction.BackwardRateCoefficient(ReactionTemperature)), estimatedSpeed);
             }
 
-            Timestep = estimatedChange / (estimatedSpeed);
+            Timestep = Math.Max(estimatedChange / (estimatedSpeed), 0.005);
 
             // at least 100  steps per resultstep
             Timestep = Math.Min(Timestep, ResultTimestep / 100);
@@ -109,6 +109,11 @@ namespace ProblemTypes
             
             CurrentConcentration = new Dictionary<Component, double>(new Component.EqualityComparer());
             ResultConcentration = new Dictionary<Component, List<double>>(new Component.EqualityComparer());
+
+            if (Math.Abs(ResultTimestep) < 0.0001)
+            {
+                ResultTimestep = TotalTime / NumberOfSamples;
+            }
 
             foreach (var componentConcentrationPair in InitialConcentration)
             {

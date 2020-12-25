@@ -38,39 +38,40 @@ namespace ExerciseCreator
             //B + E -> P
             var ListReaction1LHS = new List<ReactionElement>();
             var ListReaction1RHS = new List<ReactionElement>();
-            ListReaction1LHS.Add(new ReactionElement(componentList[1], 1));
-            ListReaction1LHS.Add(new ReactionElement(componentList[4], 1));
-            ListReaction1RHS.Add(new ReactionElement(componentList[5], 1));
+            ListReaction1LHS.Add(new ReactionElement(componentList[1].Copy(), 1));
+            ListReaction1LHS.Add(new ReactionElement(componentList[4].Copy(), 1));
+            ListReaction1RHS.Add(new ReactionElement(componentList[5].Copy(), 1));
 
-            var Reaction1 = new ElementaryReaction(ListReaction1LHS, ListReaction1RHS, 25000, 80000, 12500, 83000);
+            var Reaction1 = new ElementaryReaction(ListReaction1LHS, ListReaction1RHS, 250000, 60000, 62500, 76000);
 
             //B + A -> BA
             var ListReaction2LHS = new List<ReactionElement>();
             var ListReaction2RHS = new List<ReactionElement>();
-            ListReaction2LHS.Add(new ReactionElement(componentList[1], 1));
-            ListReaction2LHS.Add(new ReactionElement(componentList[0], 1));
-            ListReaction2RHS.Add(new ReactionElement(componentList[6], 1));
+            ListReaction2LHS.Add(new ReactionElement(componentList[1].Copy(), 1));
+            ListReaction2LHS.Add(new ReactionElement(componentList[0].Copy(), 1));
+            ListReaction2RHS.Add(new ReactionElement(componentList[6].Copy(), 1));
 
-            var Reaction2 = new ElementaryReaction(ListReaction2LHS, ListReaction2RHS, 250000, 50000, 125000, 52000);
+            var Reaction2 = new ElementaryReaction(ListReaction2LHS, ListReaction2RHS, 250000, 50000, 125000, 22000);
 
-            //BA + E => P
+            //BA + E => P + A
             var ListReaction3LHS = new List<ReactionElement>();
             var ListReaction3RHS = new List<ReactionElement>();
-            ListReaction3LHS.Add(new ReactionElement(componentList[6], 1));
-            ListReaction3LHS.Add(new ReactionElement(componentList[4], 1));
-            ListReaction3RHS.Add(new ReactionElement(componentList[5], 1));
+            ListReaction3LHS.Add(new ReactionElement(componentList[6].Copy(), 1));
+            ListReaction3LHS.Add(new ReactionElement(componentList[4].Copy(), 1));
+            ListReaction3RHS.Add(new ReactionElement(componentList[5].Copy(), 1));
+            ListReaction3RHS.Add(new ReactionElement(componentList[0].Copy(), 1));
 
-            var Reaction3 = new ElementaryReaction(ListReaction2LHS, ListReaction2RHS, 300000, 50000, 140000, 51000);
+            var Reaction3 = new ElementaryReaction(ListReaction3LHS, ListReaction3RHS, 300000, 18000, 150000, 64000);
 
             //dummy reaction C + D => P
 
             var ListReaction4LHS = new List<ReactionElement>();
             var ListReaction4RHS = new List<ReactionElement>();
-            ListReaction4LHS.Add(new ReactionElement(componentList[2], 1));
-            ListReaction4LHS.Add(new ReactionElement(componentList[3], 1));
-            ListReaction4RHS.Add(new ReactionElement(componentList[5], 1));
+            ListReaction4LHS.Add(new ReactionElement(componentList[2].Copy(), 1));
+            ListReaction4LHS.Add(new ReactionElement(componentList[3].Copy(), 1));
+            ListReaction4RHS.Add(new ReactionElement(componentList[5].Copy(), 1));
 
-            var Reaction4 = new ElementaryReaction(ListReaction2LHS, ListReaction2RHS, 0, 0, 0, 0);
+            var Reaction4 = new ElementaryReaction(ListReaction4LHS, ListReaction4RHS, 0, 1000000, 0, 1000000);
 
             //make globalreaction
             List<ElementaryReaction> reactionList = new List<ElementaryReaction> { Reaction1, Reaction2, Reaction3, Reaction4 };
